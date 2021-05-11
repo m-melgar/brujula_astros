@@ -1,4 +1,4 @@
-import numpy
+import time
 
 def cal_astral():
 
@@ -10,7 +10,11 @@ if __name__ == '__main__':
 
     while True:
 
-        mercury, venus, mars, jupyter, saturn, uranus, moon = cal_astral()
+        astral_dict = cal_astral()
 
 
 
+
+
+
+    time.sleep(60*60)
