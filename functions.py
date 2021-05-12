@@ -25,3 +25,14 @@ def cal_astral():
 
     return {'moon': moon_constell, 'mercury': mercury_constell, 'venus': venus_constell, 'mars': mars_constell, 'jupiter': jupiter_constell, 'saturn': saturn_constell, 'uranus': uranus_constell, 'neptune': neptune_constell, 'pluto': pluto_constell}
 
+
+def validate_constell(constell:str):
+    if constell not in cfg.ZODIAC_LIST:
+        return None
+    else:
+        return constell
+
+def led_trigger(constell_dic):
+
+    if validate_constell(constell_dic['moon']):
+        # encender led asignado a la constelación

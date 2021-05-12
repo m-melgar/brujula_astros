@@ -7,7 +7,9 @@ if __name__ == '__main__':
 
     while True:
 
-        constell_dict = cal_astral()
+        constell_dict_ = cal_astral()
+
+        led_trigger(constell_dict_)
 
         print(constell_dict)
 
