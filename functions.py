@@ -10,7 +10,7 @@ def cal_astral():
     """
 
     solar_system_ephemeris.set('de432s')
-    loc = EarthLocation.of_address(cfg.LOCATION)
+    loc = EarthLocation.from_geodetic(lon=cfg.LONGITUDE,lat=cfg.LATITUDE)
     t = Time.now()
 
     moon_constell = get_constellation(get_body('moon', t, loc))
