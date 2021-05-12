@@ -11,4 +11,5 @@ if __name__ == '__main__':
 
         print(constell_dict)
 
-        time.sleep(cfg.SLEEP_TIME)
+        time.sleep(cfg.SLEEP_TIME)ç
+        #

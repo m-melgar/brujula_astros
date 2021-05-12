@@ -8,7 +8,7 @@ def cal_astral():
 
     :return: dictionary containing a planet and its constellation position
     """
-
+    #
     solar_system_ephemeris.set('de432s')
     loc = EarthLocation.from_geodetic(lon=cfg.LONGITUDE,lat=cfg.LATITUDE)
     t = Time.now()
