@@ -1,32 +1,27 @@
-from skyfield.api import Loader
-from skyfield.api import N, W, load, wgs84
+from astropy.time import Time
+from astropy.coordinates import solar_system_ephemeris, EarthLocation, get_constellation
+from astropy.coordinates import get_body
 import config as cfg
 
-def install():
-    load = Loader('~/skyfield-data',verbose=True)
-
-
-def cal_astral(planets):
+def cal_astral():
     """
 
-    :return: dictionary containing astral positions
+    :return: dictionary containing a planet and its constellation position
     """
 
-    ts = load.timescale()
-    t = ts.now()
+    solar_system_ephemeris.set('de432s')
+    loc = EarthLocation.of_address(cfg.LOCATION)
+    t = Time.now()
 
-    moon, mercury, venus,earth, mars, jupiter, saturn, uranus, neptune, pluto = planets['moon'], planets['mars'], planets['venus'], planets['earth'], planets['mars'], planets[5], planets[6], planets[7], planets[8], planets[9]
+    moon_constell = get_constellation(get_body('moon', t, loc))
+    mercury_constell = get_constellation(get_body('mercury', t, loc))
+    venus_constell = get_constellation(get_body('venus', t, loc))
+    mars_constell = get_constellation(get_body('mars', t, loc))
+    jupiter_constell = get_constellation(get_body('jupiter', t, loc))
+    saturn_constell = get_constellation(get_body('saturn', t, loc))
+    uranus_constell = get_constellation(get_body('uranus', t, loc))
+    neptune_constell = get_constellation(get_body('neptune', t, loc))
+    pluto_constell = get_constellation(get_body('pluto', t, loc))
 
-    earth_city = earth + wgs84.latlon(cfg.NORTH * N, cfg.WEST * W, elevation_m=cfg.ELEVATION)
+    return {'moon': moon_constell, 'mercury': mercury_constell, 'venus': venus_constell, 'mars': mars_constell, 'jupiter': jupiter_constell, 'saturn': saturn_constell, 'uranus': uranus_constell, 'neptune': neptune_constell, 'pluto': pluto_constell}
 
-    astrometric = earth_city.at(t).observe(mars)
-
-    return {'moon': earth_city.at(t).observe(moon), 'mercury': earth_city.at(t).observe(mercury).position.au, 'venus': earth_city.at(t).observe(venus).position.au, 'mars':earth_city.at(t).observe(mars).position.au, 'jupiter':earth_city.at(t).observe(jupiter).position.au, 'saturn': earth_city.at(t).observe(saturn).position.au, 'uranus': earth_city.at(t).observe(uranus).position.au, 'neptune':earth_city.at(t).observe(neptune).position.au, 'pluto':earth_city.at(t).observe(pluto).position.au}
-
-
-def get_constellation(astra_dict):
-    """
-
-    :param astra_dict: dictionary with astral positions
-    :return: dictionary
-    """

@@ -1,3 +1,2 @@
-NORTH = 40.4168
-WEST = 3.7038
-ELEVATION = 820
+LOCATION = 'madrid'
+SLEEP_TIME = 3600 #in seconds
