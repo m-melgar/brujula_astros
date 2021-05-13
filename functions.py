@@ -4,9 +4,10 @@ from astropy.coordinates import get_body
 import config as cfg
 import numpy as np
 
+
 def cal_astral():
     """
-
+    gets all planets, moon and sun position in sky
     :return: dictionary containing a planet and its constellation position
     """
 
@@ -29,6 +30,11 @@ def cal_astral():
 
 
 def validate_constell(constell:str):
+    """
+    Check if constell is form zodiac list in config file (ZODIAC_LIST)
+    :param constell: (string) constellation name
+    :return: constellation name if valid, None otherwise
+    """
     if constell not in cfg.ZODIAC_LIST:
         return None
     else:
@@ -38,7 +44,7 @@ def validate_constell(constell:str):
 def set_data_flux(constell_str:str):
 
     """
-    given a constellation returns the data flux array
+    given a constellation returns the data flux array 4 led
 
     :param constell_str: (str) planet constellation location
     :return: array of 0's and 1's to trigger constellation leds
