@@ -22,8 +22,9 @@ def cal_astral():
     uranus_constell = get_constellation(get_body('uranus', t, loc))
     neptune_constell = get_constellation(get_body('neptune', t, loc))
     pluto_constell = get_constellation(get_body('pluto', t, loc))
+    sun_constell = get_constellation(get_body('sun',t,loc))
 
-    return {'moon': moon_constell, 'mercury': mercury_constell, 'venus': venus_constell, 'mars': mars_constell, 'jupiter': jupiter_constell, 'saturn': saturn_constell, 'uranus': uranus_constell, 'neptune': neptune_constell, 'pluto': pluto_constell}
+    return {'sun':sun_constell,'moon': moon_constell, 'mercury': mercury_constell, 'venus': venus_constell, 'mars': mars_constell, 'jupiter': jupiter_constell, 'saturn': saturn_constell, 'uranus': uranus_constell, 'neptune': neptune_constell, 'pluto': pluto_constell}
 
 
 def validate_constell(constell:str):
@@ -32,7 +33,7 @@ def validate_constell(constell:str):
     else:
         return constell
 
-def led_trigger(constell_dic):
-
-    if validate_constell(constell_dic['moon']):
-        # encender led asignado a la constelación
+# def led_trigger(constell_dic):
+#
+#     if validate_constell(constell_dic['moon']):
+#         # encender led asignado a la constelación
