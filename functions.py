@@ -118,3 +118,4 @@ def led_trigger(constell_dic):
     if validate_constell(constell_dic['sun']):
         SUN_LED_BITS = set_data_flux(constell_dic['sun'])
 
+    return MOON_LED_BITS,MERCURY_LED_BITS,VENUS_LED_BITS,MARS_LED_BITS,JUPITER_LED_BITS,SATURN_LED_BITS,URANUS_LED_BITS,NEPTUNE_LED_BITS,PLUTO_LED_BITS,SUN_LED_BITS
