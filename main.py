@@ -14,3 +14,4 @@ if __name__ == '__main__':
         print(constell_dict_)
 
         time.sleep(cfg.SLEEP_TIME)
+        # TODO si cambian las cosntelaciones hacer transición bonita

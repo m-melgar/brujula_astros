@@ -1,8 +1,8 @@
-from astropy.time import Time
-from astropy.coordinates import solar_system_ephemeris, EarthLocation, get_constellation
 from astropy.coordinates import get_body
+from astropy.coordinates import solar_system_ephemeris, EarthLocation, get_constellation
+from astropy.time import Time
+
 import config as cfg
-import numpy as np
 
 
 def cal_astral():
@@ -12,7 +12,7 @@ def cal_astral():
     """
 
     solar_system_ephemeris.set('de432s')
-    loc = EarthLocation.from_geodetic(lon=cfg.LONGITUDE,lat=cfg.LATITUDE)
+    loc = EarthLocation.from_geodetic(lon=cfg.LONGITUDE, lat=cfg.LATITUDE)
     t = Time.now()
 
     moon_constell = get_constellation(get_body('moon', t, loc))
@@ -24,12 +24,14 @@ def cal_astral():
     uranus_constell = get_constellation(get_body('uranus', t, loc))
     neptune_constell = get_constellation(get_body('neptune', t, loc))
     pluto_constell = get_constellation(get_body('pluto', t, loc))
-    sun_constell = get_constellation(get_body('sun',t,loc))
+    sun_constell = get_constellation(get_body('sun', t, loc))
 
-    return {'sun':sun_constell,'moon': moon_constell, 'mercury': mercury_constell, 'venus': venus_constell, 'mars': mars_constell, 'jupiter': jupiter_constell, 'saturn': saturn_constell, 'uranus': uranus_constell, 'neptune': neptune_constell, 'pluto': pluto_constell}
+    return {'sun': sun_constell, 'moon': moon_constell, 'mercury': mercury_constell, 'venus': venus_constell,
+            'mars': mars_constell, 'jupiter': jupiter_constell, 'saturn': saturn_constell, 'uranus': uranus_constell,
+            'neptune': neptune_constell, 'pluto': pluto_constell}
 
 
-def validate_constell(constell:str):
+def validate_constell(constell: str):
     """
     Check if constell is form zodiac list in config file (ZODIAC_LIST)
     :param constell: (string) constellation name
@@ -41,8 +43,7 @@ def validate_constell(constell:str):
         return constell
 
 
-def set_data_flux(constell_str:str):
-
+def set_data_flux(constell_str: str):
     """
     given a constellation returns the data flux array 4 led
 
@@ -50,7 +51,7 @@ def set_data_flux(constell_str:str):
     :return: array of 0's and 1's to trigger constellation leds
     """
 
-    LED_BIT_ARRAY = np.array([0,0,0,0,0,0,0,0,0,0,0,0])
+    LED_BIT_ARRAY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     if constell_str == 'Aquarius':
         LED_BIT_ARRAY[cfg.ZODIAC_LIST.index('Aquarius')] = 1
@@ -83,19 +84,17 @@ def set_data_flux(constell_str:str):
 
 
 def led_trigger(constell_dic):
-
-
     # data flux for moon
-    MOON_LED_BITS =    np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    MERCURY_LED_BITS = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    VENUS_LED_BITS =   np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    MARS_LED_BITS =    np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    JUPITER_LED_BITS = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    SATURN_LED_BITS =  np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    URANUS_LED_BITS =  np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    NEPTUNE_LED_BITS = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    PLUTO_LED_BITS =   np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    SUN_LED_BITS =     np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    MOON_LED_BITS =    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    MERCURY_LED_BITS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    VENUS_LED_BITS =   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    MARS_LED_BITS =    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    JUPITER_LED_BITS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    SATURN_LED_BITS =  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    URANUS_LED_BITS =  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    NEPTUNE_LED_BITS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    PLUTO_LED_BITS =   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    SUN_LED_BITS =     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     if validate_constell(constell_dic['moon']):
         MOON_LED_BITS = set_data_flux(constell_dic['moon'])
@@ -118,4 +117,19 @@ def led_trigger(constell_dic):
     if validate_constell(constell_dic['sun']):
         SUN_LED_BITS = set_data_flux(constell_dic['sun'])
 
-    return MOON_LED_BITS,MERCURY_LED_BITS,VENUS_LED_BITS,MARS_LED_BITS,JUPITER_LED_BITS,SATURN_LED_BITS,URANUS_LED_BITS,NEPTUNE_LED_BITS,PLUTO_LED_BITS,SUN_LED_BITS
+    return {'moon_bites': listToString(MOON_LED_BITS), 'mercury_bites': listToString(MERCURY_LED_BITS), 'venus_bites': listToString(VENUS_LED_BITS),
+            'mars_bites': listToString(MARS_LED_BITS), 'jupyter_bites': listToString(JUPITER_LED_BITS), 'saturn_bites': listToString(SATURN_LED_BITS),
+            'uranus_bites': listToString(URANUS_LED_BITS), 'neptune_bites': listToString(NEPTUNE_LED_BITS), 'pluto_bites': listToString(PLUTO_LED_BITS),
+            'sun_bites': listToString(SUN_LED_BITS)}
+
+
+def listToString(s):
+    # initialize an empty string
+    str1 = ""
+
+    # traverse in the string
+    for ele in s:
+        str1 += str(ele)
+
+    # TODO mirar a ver como leches se saca para el shifter
+    return str1
