@@ -1,9 +1,28 @@
-LOCATION = 'madrid'
+DEBUG = False
+
 LATITUDE = 40.416729
 LONGITUDE = -3.703339
-SLEEP_TIME = 3600 #in seconds
+SLEEP_TIME = 3600  # in seconds
 
-ZODIAC_LIST = ['Aquarius', 'Aries', 'Cancer', 'Capricornus', 'Gemini', 'Leo', 'Libra', 'Pisces', 'Sagittarius', 'Scorpius', 'Taurus', 'Virgo']
+ZODIAC_LIST = ['Aquarius', 'Aries', 'Cancer', 'Capricornus', 'Gemini', 'Leo', 'Libra', 'Pisces', 'Sagittarius',
+               'Scorpius', 'Taurus', 'Virgo']
+PLANET_LIST = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto']
+
+SR_1_INPUT = 0
+SR_2_INPUT = 0
+SR_3_INPUT = 0
+SR_4_INPUT = 0
+SR_5_INPUT = 0
+SR_6_INPUT = 0
+SR_7_INPUT = 0
+SR_8_INPUT = 0
+SR_9_INPUT = 0
+SR_10_INPUT = 0
+SR_11_INPUT = 0
+SR_12_INPUT = 0
+
+CLOCK_PIN = 0
+CLEAR_PIN = 0
 
 # pin assigment for every led
 # LED.MOON.AQUARIUS =

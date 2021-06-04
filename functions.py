@@ -26,6 +26,7 @@ def cal_astral():
     pluto_constell = get_constellation(get_body('pluto', t, loc))
     sun_constell = get_constellation(get_body('sun', t, loc))
 
+
     return {'sun': sun_constell, 'moon': moon_constell, 'mercury': mercury_constell, 'venus': venus_constell,
             'mars': mars_constell, 'jupiter': jupiter_constell, 'saturn': saturn_constell, 'uranus': uranus_constell,
             'neptune': neptune_constell, 'pluto': pluto_constell}
@@ -82,6 +83,39 @@ def set_data_flux(constell_str: str):
 
     return LED_BIT_ARRAY
 
+def set_data_flux_inverted(constell_str: list):
+    """
+    given a planet returns the data flux array 4 led
+
+    :param constell_str: (str) planet constellation location
+    :return: array of 0's and 1's to trigger constellation leds
+    """
+
+    LED_BIT_ARRAY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    if 'sun' in constell_str:
+        LED_BIT_ARRAY[cfg.PLANET_LIST.index('sun')] = 1
+    if 'moon' in constell_str:
+        LED_BIT_ARRAY[cfg.PLANET_LIST.index('moon')] = 1
+    if 'mercury' in constell_str:
+        LED_BIT_ARRAY[cfg.PLANET_LIST.index('mercury')] = 1
+    if 'venus' in constell_str:
+        LED_BIT_ARRAY[cfg.PLANET_LIST.index('venus')] = 1
+    if 'mars' in constell_str:
+        LED_BIT_ARRAY[cfg.PLANET_LIST.index('mars')] = 1
+    if 'jupiter' in constell_str:
+        LED_BIT_ARRAY[cfg.PLANET_LIST.index('jupiter')] = 1
+    if 'saturn' in constell_str:
+        LED_BIT_ARRAY[cfg.PLANET_LIST.index('saturn')] = 1
+    if 'uranus' in constell_str:
+        LED_BIT_ARRAY[cfg.PLANET_LIST.index('uranus')] = 1
+    if 'neptune' in constell_str:
+        LED_BIT_ARRAY[cfg.PLANET_LIST.index('neptune')] = 1
+    if 'pluto' in constell_str:
+        LED_BIT_ARRAY[cfg.PLANET_LIST.index('pluto')] = 1
+
+    return LED_BIT_ARRAY
+
 
 def led_trigger(constell_dic):
     # data flux for moon
@@ -123,6 +157,57 @@ def led_trigger(constell_dic):
             'sun_bites': listToString(SUN_LED_BITS)}
 
 
+def led_trigger_inverted(constell_dic):
+
+    AQUARIUS_LED_BITS =    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ARIES_LED_BITS =       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    CANCER_LED_BITS =      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    CAPRICORNUS_LED_BITS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    GEMINI_LED_BITS =      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    LEO_LED_BITS =         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    LIBRA_LED_BITS =       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    PISCES_LED_BITS =      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    SAGITTARIUS_LED_BITS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    SCORPIUS_LED_BITS =    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    TAURUS_LED_BITS =      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    VIRGO_LED_BITS =       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    if 'Aquarius' in constell_dic:
+        AQUARIUS_LED_BITS = set_data_flux_inverted(constell_dic['Aquarius'])
+    if 'Aries' in constell_dic:
+        ARIES_LED_BITS = set_data_flux_inverted(constell_dic['Aries'])
+    if 'Cancer' in constell_dic:
+        CANCER_LED_BITS = set_data_flux_inverted(constell_dic['Cancer'])
+    if 'Capricornus' in constell_dic:
+        CAPRICORNUS_LED_BITS = set_data_flux_inverted(constell_dic['Capricornus'])
+    if 'Gemini' in constell_dic:
+        GEMINI_LED_BITS = set_data_flux_inverted(constell_dic['Gemini'])
+    if 'Leo' in constell_dic:
+        LEO_LED_BITS = set_data_flux_inverted(constell_dic['Leo'])
+    if 'Libra' in constell_dic:
+        LIBRA_LED_BITS = set_data_flux_inverted(constell_dic['Libra'])
+    if 'Pisces' in constell_dic:
+        PISCES_LED_BITS = set_data_flux_inverted(constell_dic['Pisces'])
+    if 'Sagittarius' in constell_dic:
+        SAGITTARIUS_LED_BITS = set_data_flux_inverted(constell_dic['Sagittarius'])
+    if 'Scorpius' in constell_dic:
+        SCORPIUS_LED_BITS = set_data_flux_inverted(constell_dic['Scorpius'])
+    if 'Taurus' in constell_dic:
+        TAURUS_LED_BITS = set_data_flux_inverted(constell_dic['Taurus'])
+    if 'Virgo' in constell_dic:
+        VIRGO_LED_BITS = set_data_flux_inverted(constell_dic['Virgo'])
+
+    return {'aquarius_bites': listToString(AQUARIUS_LED_BITS), 'aries_bites': listToString(ARIES_LED_BITS),
+            'cancer_bites': listToString(CANCER_LED_BITS),
+            'capricornus_bites': listToString(CAPRICORNUS_LED_BITS), 'gemini_bites': listToString(GEMINI_LED_BITS),
+            'leo_bites': listToString(LEO_LED_BITS),
+            'libra_bites': listToString(LIBRA_LED_BITS), 'pisces_bites': listToString(PISCES_LED_BITS),
+            'sagittarius_bites': listToString(SAGITTARIUS_LED_BITS),
+            'scorpius_bites': listToString(SCORPIUS_LED_BITS),
+            'taurus_bites': listToString(TAURUS_LED_BITS),
+            'virgo_bites': listToString(VIRGO_LED_BITS)}
+
+
 def listToString(s):
     # initialize an empty string
     str1 = ""
@@ -133,3 +218,27 @@ def listToString(s):
 
     # TODO mirar a ver como leches se saca para el shifter
     return str1
+
+
+def invert_dictionary_map(my_map):
+    inv_map = {}
+    for k, v in my_map.items():
+        inv_map[v] = inv_map.get(v, []) + [k]
+
+    return inv_map
+
+
+def data_transform_to_register(mydict: dict):
+    """
+    transform a dict of 10 bits array to dict for 8 bit shift register
+    :return: dict of fixed arrays
+    """
+    # TODO
+
+    serial_dict = [v for k, v in mydict.items()]
+
+    serial_dict = "".join(serial_dict)
+
+    serial_dict = [serial_dict[i:i+8] for i in range(0, len(serial_dict), 8)]
+
+    return serial_dict
