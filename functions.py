@@ -1,3 +1,5 @@
+import time
+
 from astropy.coordinates import get_body
 from astropy.coordinates import solar_system_ephemeris, EarthLocation, get_constellation
 from astropy.time import Time
@@ -242,3 +244,61 @@ def data_transform_to_register(mydict: dict):
     serial_dict = [serial_dict[i:i+8] for i in range(0, len(serial_dict), 8)]
 
     return serial_dict
+
+
+def replacer(s, newstring, index, nofail=False):
+    # raise an error if index is outside of the string
+    if not nofail and index not in range(len(s)):
+        raise ValueError("index outside given string")
+
+    # if not erroring, but the index is still not in the correct range..
+    if index < 0:  # add it to the beginning
+        return newstring + s
+    if index > len(s):  # add it to the end
+        return s + newstring
+
+    # insert the new string between "slices" of the original
+    return s[:index] + newstring + s[index + 1:]
+
+
+def pretty_transition():
+
+    SERIAL = '0'*120
+    for i in range(120):
+        SERIAL = replacer(SERIAL, '1', i)
+        DATA = [SERIAL[i:i + 8] for i in range(0, len(SERIAL), 8)]
+
+        s1.setValue(DATA[0])
+        s2.setValue(DATA[1])
+        s3.setValue(DATA[2])
+        s4.setValue(DATA[3])
+        s5.setValue(DATA[4])
+        s6.setValue(DATA[5])
+        s7.setValue(DATA[6])
+        s8.setValue(DATA[7])
+        s9.setValue(DATA[8])
+        s10.setValue(DATA[9])
+        s11.setValue(DATA[10])
+        s12.setValue(DATA[11])
+
+        time.sleep(10)
+
+    SERIAL = '1' * 120
+    for i in range(120):
+        SERIAL = replacer(SERIAL, '0', i)
+        DATA = [SERIAL[i:i + 8] for i in range(0, len(SERIAL), 8)]
+
+        s1.setValue(DATA[0])
+        s2.setValue(DATA[1])
+        s3.setValue(DATA[2])
+        s4.setValue(DATA[3])
+        s5.setValue(DATA[4])
+        s6.setValue(DATA[5])
+        s7.setValue(DATA[6])
+        s8.setValue(DATA[7])
+        s9.setValue(DATA[8])
+        s10.setValue(DATA[9])
+        s11.setValue(DATA[10])
+        s12.setValue(DATA[11])
+
+        time.sleep(10)

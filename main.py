@@ -7,6 +7,7 @@ from shifter import Shifter
 
 if __name__ == '__main__':
 
+    # SETUP
     s1  = Shifter(cfg.SR_1_INPUT, cfg.CLOCK_PIN, cfg.CLEAR_PIN)
     s2  = Shifter(cfg.SR_2_INPUT, cfg.CLOCK_PIN, cfg.CLEAR_PIN)
     s3  = Shifter(cfg.SR_3_INPUT, cfg.CLOCK_PIN, cfg.CLEAR_PIN)
@@ -33,6 +34,7 @@ if __name__ == '__main__':
     s11.setupBoard()
     s2.setupBoard()
 
+    # CONSTELLATION
     while True:
 
         constell_dict_ = cal_astral()
@@ -67,6 +69,9 @@ if __name__ == '__main__':
 
         time.sleep(cfg.SLEEP_TIME)
 
-        # TODO si cambian las cosntelaciones hacer transición bonita
+        constell_dict_ = cal_astral()
+        constell_dict_inverted = functions.invert_dictionary_map(constell_dict_)
+        DATA_NEW = functions.data_transform_to_register(led_trigger_inverted(constell_dict_inverted))
 
-
+        if DATA_NEW != DATA:
+            functions.pretty_transition()
