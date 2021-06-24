@@ -2,6 +2,18 @@ from time import sleep
 
 import RPi.GPIO as gpio
 
+"""
+def shiftout(byte):
+  GPIO.output(PIN_LATCH, 0)
+  for x in range(8)
+    GPIO.output(PIN_DATA, (byte >> x) & 1)
+    GPIO.output(PIN_CLOCK, 1)
+    GPIO.output(PIN_CLOCK, 0)
+  GPIO.output(PIN_LATCH, 1)
+  
+for x in range(255):
+  shiftout(x)
+"""
 
 class Shifter:
 
