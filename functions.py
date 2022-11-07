@@ -7,7 +7,7 @@ from astropy.time import Time
 import config as cfg
 
 
-def cal_astral():
+def cal_astral() -> dict:
     """
     gets all planets, moon and sun position in sky
     :return: dictionary containing a planet and its constellation position
@@ -46,12 +46,12 @@ def validate_constell(constell: str):
         return constell
 
 
-def set_data_flux(constell_str: str):
+def set_data_flux(constell_str: str) -> list:
     """
     given a constellation returns the data flux array 4 led
 
     :param constell_str: (str) planet constellation location
-    :return: array of 0's and 1's to trigger constellation leds
+    :return: list of 0's and 1's to trigger constellation leds
     """
 
     LED_BIT_ARRAY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -85,12 +85,12 @@ def set_data_flux(constell_str: str):
 
     return LED_BIT_ARRAY
 
-def set_data_flux_inverted(constell_str: list):
+def set_data_flux_inverted(constell_str: list) -> list:
     """
     given a planet returns the data flux array 4 led
 
     :param constell_str: (str) planet constellation location
-    :return: array of 0's and 1's to trigger constellation leds
+    :return: list of 0's and 1's to trigger constellation leds
     """
 
     LED_BIT_ARRAY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -119,7 +119,7 @@ def set_data_flux_inverted(constell_str: list):
     return LED_BIT_ARRAY
 
 
-def led_trigger(constell_dic):
+def led_trigger(constell_dic) -> dict:
     # data flux for moon
     MOON_LED_BITS =    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     MERCURY_LED_BITS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -159,7 +159,7 @@ def led_trigger(constell_dic):
             'sun_bites': listToString(SUN_LED_BITS)}
 
 
-def led_trigger_inverted(constell_dic):
+def led_trigger_inverted(constell_dic) -> dict:
 
     AQUARIUS_LED_BITS =    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ARIES_LED_BITS =       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -218,7 +218,7 @@ def listToString(s):
     for ele in s:
         str1 += str(ele)
 
-    # TODO mirar a ver como leches se saca para el shifter
+    # TODO mirar a ver cómo leches se saca para el shifter
     return str1
 
 
